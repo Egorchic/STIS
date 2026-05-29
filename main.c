@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "include/concept.h"
 #include "include/instance.h"
+#include "include/possible_world.h"
 #include <windows.h> 
 
 /*
@@ -60,6 +61,26 @@ int main() {
     }    
     printf("\n");
 
+
+    PossibleWorld world;
+    initPossibleWorld(&world, "Мир_1");
+    addInstance(&world, instances[0]);
+    addInstance(&world, instances[1]);
+    addInstance(&world, instances[2]);
+    for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 6; i++) {
+            int result = instanceOf(&world, concepts, 6, world.instences[j].name, i);
+            if (result == -1)
+                printf("%s не является экземпляром в мире %s\n", world.instences[j].name, world.name);
+            else {
+                if (result == 1)
+                    printf("%s instance-of %s\n", world.instences[j].name, concepts[i].name);
+                else
+                    printf("%s not instance-of %s\n", world.instences[j].name, concepts[i].name);
+            }
+        }
+        printf("\n");
+    }
 
     return 0;
 }

@@ -16,6 +16,9 @@ int isIsa(const Concept concepts[], int child_index, int parent_index) {
     if (child_index == -1)
         return 0;
 
+    if (child_index == parent_index)
+        return 1;
+
     if (concepts[child_index].parent_index == parent_index)
         return 1;
     else 
