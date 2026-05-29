@@ -8,7 +8,7 @@ typedef struct {
     int parent_index;
 } Concept;
 
-void setName(Concept* concept, const char* new_name);
+void setConceptName(Concept* concept, const char* new_name);
 void initConcept(Concept* concept, const char* name, int parent_index);
 int isIsa(const Concept concepts[], int child_index, int parent_index);
 int findConceptByName(const Concept concepts[], int concept_count, const char* name);

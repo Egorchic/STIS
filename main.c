@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "include/concept.h"
+#include "include/instance.h"
 #include <windows.h> 
 
 /*
@@ -45,8 +46,19 @@ int main() {
             } 
         }
     printf("\n");
-    
-    
+
+
+    Instance instances[3];
+
+    initInstance(&instances[0], "Иван", findConceptByName(concepts, 6, "ПОЛЬЗОВАТЕЛЬ"));
+    initInstance(&instances[1], "Датасет_v1", findConceptByName(concepts, 6, "ДАТАСЕТ"));
+    initInstance(&instances[2], "Experiment_87", findConceptByName(concepts, 6, "ЭКСПЕРИМЕНТ"));
+
+    for (int i = 0; i < 3; i++) {
+        printInstance(&instances[i], concepts);
+        printf("\n");
+    }    
+    printf("\n");
 
 
     return 0;

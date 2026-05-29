@@ -9,7 +9,7 @@ typedef struct  {
 } Instance;
 
 void initInstance(Instance* instance, const char* name, int concept_index);
-void setName(Instance* instance, const char* name);
+void setInstanceName(Instance* instance, const char* new_name);
 void printInstance(const Instance* instance, const Concept concepts[]);
 
 #endif

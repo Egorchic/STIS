@@ -2,13 +2,13 @@
 #include <stdio.h>
 #include <string.h>
 
-void setName(Concept* concept, const char* new_name) {
+void setConceptName(Concept* concept, const char* new_name) {
     strncpy(concept->name, new_name, sizeof(concept->name) - 1);
     concept->name[sizeof(concept->name) - 1] = '\0';
 }
 
 void initConcept(Concept* concept, const char* name, int parent_index) {
-    setName(concept, name);
+    setConceptName(concept, name);
     concept->parent_index = parent_index;
 }
 
