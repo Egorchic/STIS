@@ -12,7 +12,10 @@ int addRole(Frame* frame, const char* role_name, int concept_index) {
     if (frame->role_count == 8)
         return 0;
 
-    FrameRole role;
+    if (concept_index < 0)
+        return 0;
+
+    FrameRole role;             
     strncpy(role.name, role_name, sizeof(role.name) - 1);
     role.name[sizeof(role.name) - 1] = '\0';
     role.concept_index = concept_index;

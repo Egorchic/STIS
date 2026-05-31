@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "include/concept.h"
-#include "include/instance.h"
-#include "include/possible_world.h"
+#include "concept.h"
+#include "instance.h"
+#include "possible_world.h"
 #include "kripke_scale.h"
 #include "frame.h"
 #include <windows.h> 
@@ -114,7 +114,7 @@ int main() {
     
     addRole(&frame_create_dataset, "a", findConceptByName(concepts, 6, "ПОЛЬЗОВАТЕЛЬ"));
     addRole(&frame_create_dataset, "r", findConceptByName(concepts, 6, "ДАТАСЕТ"));
-    addRole(&frame_use_dataset, "s", findConceptByName(concepts, 6, "ЭКСПЕРИМЕНТ"));
+    addRole(&frame_use_dataset, "a", findConceptByName(concepts, 6, "ЭКСПЕРИМЕНТ"));
     addRole(&frame_use_dataset, "o", findConceptByName(concepts, 6, "ДАТАСЕТ"));
 
     printFrame(&frame_create_dataset, concepts);
