@@ -5,7 +5,7 @@
 
 typedef struct {
     char name[40];
-    Instance instences[64];
+    Instance instances[64];
     int instance_count;
 } PossibleWorld;
 

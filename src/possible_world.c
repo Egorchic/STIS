@@ -11,7 +11,7 @@ void initPossibleWorld(PossibleWorld* world, const char* name) {
 int addInstance(PossibleWorld* world, Instance instance) {
     if (world->instance_count == 64)
         return 0;
-    world->instences[world->instance_count] = instance;
+    world->instances[world->instance_count] = instance;
     world->instance_count++;
 
     return 1;
@@ -19,7 +19,7 @@ int addInstance(PossibleWorld* world, Instance instance) {
 
 int findInstanceIndex(const PossibleWorld* world, const char* instance_name) {
     for (int i = 0; i < world->instance_count; i++) 
-        if (strcmp(world->instences[i].name, instance_name) == 0)
+        if (strcmp(world->instances[i].name, instance_name) == 0)
             return i;
 
     return -1;
@@ -47,7 +47,7 @@ int instanceOf(
     }
 
     int instance_ind = findInstanceIndex(world, instance_name);
-    Instance instance = world->instences[instance_ind];
+    Instance instance = world->instances[instance_ind];
     int concept_ind = instance.concept_index;
 
     if (concept_ind < 0 || concept_ind >= concept_count) {

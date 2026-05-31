@@ -2,6 +2,7 @@
 #include "include/concept.h"
 #include "include/instance.h"
 #include "include/possible_world.h"
+#include "kripke_scale.h"
 #include <windows.h> 
 
 /*
@@ -69,18 +70,40 @@ int main() {
     addInstance(&world, instances[2]);
     for (int j = 0; j < 3; j++) {
         for (int i = 0; i < 6; i++) {
-            int result = instanceOf(&world, concepts, 6, world.instences[j].name, i);
+            int result = instanceOf(&world, concepts, 6, world.instances[j].name, i);
             if (result == -1)
-                printf("%s не является экземпляром в мире %s\n", world.instences[j].name, world.name);
+                printf("%s не является экземпляром в мире %s\n", world.instances[j].name, world.name);
             else {
                 if (result == 1)
-                    printf("%s instance-of %s\n", world.instences[j].name, concepts[i].name);
+                    printf("%s instance-of %s\n", world.instances[j].name, concepts[i].name);
                 else
-                    printf("%s not instance-of %s\n", world.instences[j].name, concepts[i].name);
+                    printf("%s not instance-of %s\n", world.instances[j].name, concepts[i].name);
             }
         }
         printf("\n");
     }
+
+    PossibleWorld world1, world2;
+    initPossibleWorld(&world1, "Мир_12");
+    initPossibleWorld(&world2, "Мир_13");
+    KripkeScale scale;
+    initKripkeScale(&scale);
+    addWorld(&scale, world);
+    addWorld(&scale, world1);
+    addWorld(&scale, world2);
+
+    setAccessible(&scale, findWorldIndex(&scale, world.name), findWorldIndex(&scale, world1.name), 1);
+    setAccessible(&scale, findWorldIndex(&scale, world1.name), findWorldIndex(&scale, world2.name), 1);
+
+    for (int i = 0; i < scale.world_count; i++)
+        for (int j = 0; j < scale.world_count; j++) {
+            int result = isAccessible(&scale, i, j);
+
+            if (result)
+                printf("Мир %s достижим из мира %s\n", getWorld(&scale, j)->name, getWorld(&scale, i)->name);
+            else
+                printf("Мир %s не достижим из мира %s\n", getWorld(&scale, j)->name, getWorld(&scale, i)->name);
+        }
 
     return 0;
 }
