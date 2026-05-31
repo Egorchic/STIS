@@ -23,13 +23,13 @@ int findWorldIndex(const KripkeScale* scale, const char* world_name) {
         if (strcmp(scale->worlds[i].name, world_name) == 0)
             return i;
 
-    return 0;
+    return -1;
 }
 
 void setAccessible(KripkeScale* scale, int from_world_index, int to_world_index, int value) {
-    if (from_world_index < 0 || from_world_index >= 8)
+    if (from_world_index < 0 || from_world_index >= scale->world_count)
         return;
-    if (to_world_index < 0 || to_world_index >= 8)
+    if (to_world_index < 0 || to_world_index >= scale->world_count)
         return;
     if (value != 0 && value != 1)
         return;
@@ -38,16 +38,16 @@ void setAccessible(KripkeScale* scale, int from_world_index, int to_world_index,
 }
 
 int isAccessible(const KripkeScale* scale, int from_world_index, int to_world_index) {
-    if (from_world_index < 0 || from_world_index >= 8)
-        return -1;
-    if (to_world_index < 0 || to_world_index >= 8)
-        return -1;
+    if (from_world_index < 0 || from_world_index >= scale->world_count)
+        return;
+    if (to_world_index < 0 || to_world_index >= scale->world_count)
+        return;
     
     return scale->accessibility[from_world_index][to_world_index];
 }
 
 PossibleWorld* getWorld(KripkeScale* scale, int world_index) {
-    if (world_index < 0 || world_index >= 8)
+    if (world_index < 0 || world_index >= scale->world_count)
         return NULL;
 
     return &scale->worlds[world_index];
